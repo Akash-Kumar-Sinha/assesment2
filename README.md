@@ -66,9 +66,4 @@ npm start
 docker run -p 6379:6379 -d redis:8.0-rc1
 ```
 
-### Video Demo
-
-[Demo Video](./video.mp4)
-
-
 > The frontend proxies `/api` requests to `http://localhost:4001`.
