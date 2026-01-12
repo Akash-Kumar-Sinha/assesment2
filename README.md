@@ -7,26 +7,29 @@ Your task is to refactor, optimize, and fix these problems.
 
 ### 💻 Frontend (React)
 
-1. **Memory Leak**  
+1. **Memory Leak**
+
    - `Items.js` leaks memory if the component unmounts before fetch completes. Fix it.
 
-2. **Pagination & Search**  
+2. **Pagination & Search**
+
    - Implement paginated list with server‑side search (`q` param). Contribute to both client and server.
 
-3. **Performance**  
+3. **Performance**
+
    - The list can grow large. Integrate **virtualization** (e.g., `react-window`) to keep UI smooth.
 
-4. **UI/UX Polish(optional)**  
+4. **UI/UX Polish(optional)**
    - Feel free to enhance styling, accessibility, and add loading/skeleton states.
 
 ### 🔧 Backend (Node.js)
 
-1. **Refactor blocking I/O**  
+1. **Refactor blocking I/O**
+
    - `src/routes/items.js` uses `fs.readFileSync`. Replace with non‑blocking async operations.
 
-2. **Performance**  
+2. **Performance**
    - `GET /api/stats` recalculates stats on every request. Cache results, watch file changes, or introduce a smarter strategy.
-
 
 ## ⏰ Time Expectation
 
@@ -44,6 +47,7 @@ Once completed, submit one of the following:
 ## Quick Start
 
 node version: 18.XX
+
 ```bash
 nvm install 18
 nvm use 18
@@ -57,6 +61,9 @@ npm start
 cd frontend
 npm install
 npm start
+
+# Redis server (for caching)
+docker run -p 6379:6379 -d redis:8.0-rc1
 ```
 
 > The frontend proxies `/api` requests to `http://localhost:4001`.
