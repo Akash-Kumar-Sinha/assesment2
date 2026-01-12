@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useData } from '../state/DataContext';
 import { Skeleton } from '../components/Skeleton';
 import { Link } from 'react-router-dom';
+import { List } from "react-window";
 
 function Items() {
   const { items, fetchItems, itemsLength, page, setPage } = useData();
@@ -46,10 +47,13 @@ function Items() {
           <p className="text-sm text-gray-400">{itemsLength} items</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-100 divide-y divide-gray-100 mb-8">
-          {items.map((item) => (
-            <ItemList key={item.id} item={item} />
-          ))}
+        <div className="bg-white rounded-lg border border-gray-100 mb-8 overflow-hidden" style={{ height: '500px' }}>
+          <List
+            rowComponent={ItemList}
+            rowCount={items.length}
+            rowHeight={50}
+            rowProps={{ items }}
+          />
         </div>
 
         <div className="flex items-center justify-center gap-6">
@@ -76,15 +80,18 @@ function Items() {
   );
 }
 
-const ItemList = ({ item }) => {
+const ItemList = ({ index, items, style }) => {
+  const item = items[index];
+  console.log(index);
   return (
-    <Link
-      to={`/items/${item.id}`}
-      className="block px-6 py-4 hover:bg-gray-50 transition-colors"
-    >
-      <h3 className="text-gray-900 font-light">{item.name}</h3>
-    </Link>
-  )
+    <div style={style}>
+      <Link
+        to={`/items/${item.id}`}
+        className="block px-6 py-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
+      >
+        <h3 className="text-gray-900 font-light">{item.name}</h3>
+      </Link>
+    </div>
+  );
 }
-
 export default Items;

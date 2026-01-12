@@ -15,7 +15,7 @@ export function DataProvider({ children }) {
 
     const json = await res.json();
 
-    const data = json.items;
+    const data = Array.isArray(json.items) ? json.items : [];
     setPage(json.page || page);
     setItems(data);
     setItemsLength(json.length ?? data.length);
